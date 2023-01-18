@@ -8,4 +8,14 @@ when isMainModule:
   echo("Hello, World!")
   core_initialize()
   loader_initialize()
+
+#[
+https://github.com/skyline-emu/skyline/tree/ftx1/app/src/main/cpp/skyline
+https://github.com/skyline-emu/skyline/blob/ftx1/app/src/main/cpp/skyline/os.cpp
+https://github.com/skyline-emu/skyline/blob/ftx1/app/src/main/cpp/skyline/os.h
+https://github.com/skyline-emu/skyline/tree/ftx1/app/src/main/cpp/skyline/common
+https://github.com/skyline-emu/skyline/blob/ftx1/app/src/main/cpp/skyline/common/logger.cpp
+https://github.com/skyline-emu/skyline/tree/ftx1/app/src/main/cpp/skyline/loader
+
+]#
   
