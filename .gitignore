@@ -1,0 +1,6 @@
+*.exe
+src/*.exe
+
+nimcache/
+nimblecache/
+htmldocs/
