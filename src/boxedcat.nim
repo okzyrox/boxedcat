@@ -6,8 +6,8 @@ include "core/loader_ini.nim"
 
 when isMainModule:
   echo("Hello, World!")
-  core_initialize()
-  loader_initialize()
+  coreInitialize()
+  loaderInitialize()
 
 #[
 https://github.com/skyline-emu/skyline/tree/ftx1/app/src/main/cpp/skyline

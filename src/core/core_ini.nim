@@ -1,3 +1,23 @@
 
-proc core_initialize() =
-    echo "Attempting 'core_ini' initialisation"
+var coreModuleList = @[
+    "BLANK"
+]
+
+
+proc initModulesCore() = 
+    for i in coreModuleList:
+        case i:
+            of "logger":
+                #include "boxedcat/util/logger/logger.nim"
+                echo 1
+            of "BLANK":
+                echo "nothing happened..."
+            
+
+
+proc coreInitialize() =
+    echo "Attempting initialisation of 'core'"
+    try:
+        initModulesCore()
+    except:
+        echo "Failed to load one or more 'core' modules"
