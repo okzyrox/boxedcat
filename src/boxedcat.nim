@@ -3,11 +3,15 @@
 
 include "core/core_ini.nim"
 include "core/loader_ini.nim"
+include "app/app.nim"
 
 when isMainModule:
   echo("Hello, World!")
-  coreInitialize()
-  loaderInitialize()
+  coreInitialize() # temp
+  loaderInitialize() # temp
+  if isNotCliApp:
+    echo "Attempting \'appWindow\' initialisation"
+    windowAppMain() # window
 
 #[
 https://github.com/skyline-emu/skyline/tree/ftx1/app/src/main/cpp/skyline
