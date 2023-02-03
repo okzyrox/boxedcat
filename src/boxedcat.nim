@@ -13,7 +13,7 @@ when isMainModule:
     echo "Attempting \'appWindow\' initialisation"
     windowAppMain() # window
 
-#[
+#[ ref because its understandable
 https://github.com/skyline-emu/skyline/tree/ftx1/app/src/main/cpp/skyline
 https://github.com/skyline-emu/skyline/blob/ftx1/app/src/main/cpp/skyline/os.cpp
 https://github.com/skyline-emu/skyline/blob/ftx1/app/src/main/cpp/skyline/os.h
