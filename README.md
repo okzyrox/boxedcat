@@ -21,5 +21,7 @@
 # Credits
 ## DALL-E
 - for the logo
+## NiGUI
+- [core app UI/Frontend](https://github.com/simonkrauter/NiGui)
 ## todo
 - add more credits

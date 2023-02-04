@@ -7,7 +7,7 @@ var loaderModuleList = @[
 
 proc initModulesLoader() = 
     for i in loaderModuleList:
-        case i:
+        case i: # todo, add modules and maybe module loading system. if not, then just check if the mods are working through some means
             of "BLANK":
                 echo "nothing happened..."
 

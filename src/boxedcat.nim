@@ -6,7 +6,7 @@ include "core/loader_ini.nim"
 include "app/app.nim"
 
 when isMainModule:
-  echo("Hello, World!")
+  echo("Starting Boxedcat...")
   coreInitialize() # temp
   loaderInitialize() # temp
   if isNotCliApp:
