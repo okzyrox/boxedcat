@@ -21,7 +21,7 @@
 # Credits
 ## me
 - for doing everything
-# contributors
+## contributors
 - for being better programmers
 ## DALL-E
 - for the logo
