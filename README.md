@@ -25,3 +25,7 @@
 - [core app UI/Frontend](https://github.com/simonkrauter/NiGui)
 ## SwitchBrew wiki + ReSwitched Discord
 - documentation and core emulation help
+
+# License
+
+'BoxedCat' is licensed under MIT ONLY.
