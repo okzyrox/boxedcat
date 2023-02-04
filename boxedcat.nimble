@@ -3,7 +3,7 @@
 version       = "0.0.1"
 author        = "ZyroX"
 description   = "boxedcat"
-license       = "GPL-2.0-only"
+license       = "MIT"
 srcDir        = "src"
 bin           = @["boxedcat"]
 
