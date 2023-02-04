@@ -1,4 +1,4 @@
-<img src="img/logo__15.png" align="right">
+<img src=".img/logo__15.png" align="right">
 
 # boxedcat
 
