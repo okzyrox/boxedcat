@@ -6,4 +6,6 @@
   applet handler
 ]#
 
+include "applet_handler_util.nim"
+
 echo 1
