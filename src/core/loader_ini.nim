@@ -15,7 +15,7 @@ proc initModulesLoader() =
 
 
 proc loaderInitialize() = 
-    echo "Attempting 'loader_ini' initialisation"
+    echo "Attempting \'loader\' init"
     try:
         initModulesLoader()
     except:

@@ -10,7 +10,7 @@ when isMainModule:
   coreInitialize() # temp
   loaderInitialize() # temp
   if isNotCliApp:
-    echo "Attempting \'appWindow\' initialisation"
+    echo "Attempting \'appWindow\' init"
     windowAppMain() # window
 
 #[ ref because its understandable

@@ -16,7 +16,7 @@ proc initModulesCore() =
 
 
 proc coreInitialize() =
-    echo "Attempting initialisation of 'core'"
+    echo "Attempting \'core\' init"
     try:
         initModulesCore()
     except:
