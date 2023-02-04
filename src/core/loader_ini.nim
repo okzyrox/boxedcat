@@ -1,3 +1,11 @@
+#[
+  boxedcat - an okzyrox experimental project
+
+  2022-2023
+
+  util and func loader
+]#
+
 
 var loaderModuleList = @[
     "BLANK"
@@ -14,9 +22,11 @@ proc initModulesLoader() =
 
 
 
-proc loaderInitialize() = 
+proc core_LoaderInit():string = 
     echo "Attempting \'loader\' init"
     try:
         initModulesLoader()
     except:
         echo "Failed to load one or more 'loader' modules"
+        return "0"
+    return "1"
