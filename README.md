@@ -19,13 +19,17 @@
   shell users are smart enough to make their own commands
 
 # Credits
+## me
+- for doing everything
+# contributors
+- for being better programmers
 ## DALL-E
 - for the logo
 ## NiGUI
 - [core app UI/Frontend](https://github.com/simonkrauter/NiGui)
 ## SwitchBrew wiki + ReSwitched Discord
-- documentation and core emulation help
+- documentation and core emulation help, go read that if you dont know anything about emulation
 
 # License
 
-'BoxedCat' is licensed under MIT ONLY.
+'boxedcat' is licensed under MIT ONLY.
