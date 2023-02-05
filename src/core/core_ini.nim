@@ -5,6 +5,9 @@
 
   module loader for core things
 ]#
+import boxedcat/util/logger/logger
+
+
 var coreModuleList = @[
     "BLANK"
 ]
@@ -13,20 +16,17 @@ var coreModuleList = @[
 proc initModulesCore() = 
     for i in coreModuleList:
         case i:
-            of "logger":
-                #include "boxedcat/util/logger/logger.nim"
-                echo 1
             of "BLANK":
                 echo "nothing happened..."
             
 
 
 proc core_CoreInit():string =
-    echo "Attempting \'core\' init"
+    log("Attempting \'core\' init", "INFO")
     try:
         initModulesCore()
     except:
-        echo "Failed to load one or more 'core' modules"
+        log("Failed to load one or more 'core' modules", "ERROR")
         return "0"
 
     return "1"

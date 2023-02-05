@@ -9,13 +9,14 @@
 include "core/core_ini.nim"
 include "core/loader_ini.nim"
 include "app/app.nim"
+import core/boxedcat/util/logger/logger
 
 when isMainModule:
-  echo("Starting Boxedcat...\n")
+  log("Starting Boxedcat...\n", "INFO")
   echo core_CoreInit()
   echo core_LoaderInit()
   if isNotCliApp:
-    echo "Attempting \'appWindow\' init"
+    log("Attempting \'appWindow\' init", "INFO")
     windowAppMain() # window
 
 #[ ref because its understandable despite it being a translation layer

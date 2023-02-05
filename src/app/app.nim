@@ -8,6 +8,7 @@
 
 include nigui
 include nigui/msgbox
+import ../core/boxedcat/util/logger/logger
 
 
 let 
@@ -78,7 +79,7 @@ proc windowAppMain() =
                 button3="Cancel")
             of 1: 
                 window.dispose()
-                echo "\'appWindow\' closed"
+                log("\'appWindow\' closed", "INFO")
             of 2: 
                 window.minimize()
             else: 

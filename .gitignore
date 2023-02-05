@@ -1,6 +1,9 @@
 *.exe
 src/*.exe
 
+*.log
+logs/*.log
+
 nimcache/
 nimblecache/
 htmldocs/

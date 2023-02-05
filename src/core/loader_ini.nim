@@ -5,6 +5,7 @@
 
   util and func loader
 ]#
+import boxedcat/util/logger/logger
 
 
 var loaderModuleList = @[
@@ -23,10 +24,10 @@ proc initModulesLoader() =
 
 
 proc core_LoaderInit():string = 
-    echo "Attempting \'loader\' init"
+    log("Attempting \'loader\' init", "INFO") 
     try:
         initModulesLoader()
     except:
-        echo "Failed to load one or more 'loader' modules"
+        log("Failed to load one or more \'loader\' modules", "ERROR")
         return "0"
     return "1"

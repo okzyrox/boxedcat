@@ -1,12 +1,14 @@
-#include std/logging # this aint working
-#
-# "Error: 'import' is only allowed at top level"
-# import just doesnt work like at all
-# include bypasses this, then errors in lib/pure/logging.nim (145,1)
-#
+#[
+  boxedcat - an okzyrox experimental project
 
-#var consoleLog = newConsoleLogger(fmtStr="[$time] - $levelname: ")
-#var fileLog = newFileLogger("logs/main.log", levelThreshold=lvlAll)
+  2022-2023
 
-#addHandler(consoleLog)
-#addHandler(fileLog)
+  logging system
+]#
+
+import strutils, times
+
+template log*(text: string, level: string) =
+  const module = instantiationInfo().filename
+  let str = "[$# $#][$#] - $#: $#" % [getDateStr(), getClockStr(), module, level, text]
+  echo str
