@@ -8,7 +8,9 @@
 
 include nigui
 include nigui/msgbox
+import strutils
 import ../core/boxedcat/util/logger/logger
+include settings/settings_handler
 
 
 let 
@@ -39,30 +41,72 @@ proc windowAppMain() =
     window.height = 600.scaleToDpi
     #window.iconPath=APPICONPATH
 
+    # core container
+
     var containerCore = newLayoutContainer(Layout_Vertical)
     var containerTop = newLayoutContainer(Layout_Horizontal)
     var containerBot = newLayoutContainer(Layout_Vertical)
-    # Create a container for controls.
-    # By default, a container is empty.
-    # It's size will adapt to it's child controls.
-    # A LayoutContainer will automatically align the child controls.
-    # The layout is set to clhorizontal.
+    
+    # settings window init
+    let settingWindow = newWindow(title="Settings")
+    var 
+        settingsContainerCore = newLayoutContainer(Layout_Vertical)
+        settingsContainerTop = newLayoutContainer(Layout_Horizontal)
+        settingsContainerBot = newLayoutContainer(Layout_Vertical)
 
     containerCore.add(containerTop)
     containerCore.add(containerBot)
 
+    settingsContainerCore.add(settingsContainerTop)
+    settingsContainerCore.add(settingsContainerBot)
+
     window.add(containerCore)
+    settingWindow.add(settingsContainerCore)
     # Add the container to the window.
 
-    var buttonOpenFile = newButton("Open File (.nro, .xci, .nsp, .nca)")
-    var buttonOpenSettings = newButton("Settings")
-    var logFieldHeaderText = newLabel("App-specific Events Log:")
-    var logTextArea = newTextArea() # multiline txtbox
+    # Containers and Buttons Init 
 
+    var 
+        #containerCore
+        ##containerTop
+        buttonOpenFile = newButton("Open File (.nro, .xci, .nsp, .nca)")
+        buttonOpenSettings = newButton("Settings")
+        ##containerBot
+        logFieldHeaderText = newLabel("App-specific Events Log:")
+        logTextArea = newTextArea() # multiline txtbox
+
+        ##settingsContainerCore
+        #containerTop
+        settingsTabButtonGeneral = newButton("General")
+        settingsTabButtonControl = newButton("Control")
+        settingsTabButtonEmulation = newButton("Emulation")
+        #containerBottomTabGeneral
+        settingsTabGeneralCheckVs = newCheckbox("VSync")
+        setVsyncC = configDict.getSectionValue("General", "VSync")
+    
+    if setVsyncC == "true": settingsTabGeneralCheckVs.checked = true
+
+    var 
+        settingsTabGeneralHidden = false
+        settingsTabControlHidden = true
+        settingsTabEmulationHidden = true
+
+    #ContainerCore
     containerTop.add(buttonOpenFile)
     containerTop.add(buttonOpenSettings)
     containerBot.add(logFieldHeaderText)
     containerBot.add(logTextArea)
+
+    #settingsContainerCore
+
+    settingsContainerTop.add(settingsTabButtonGeneral)
+    settingsContainerTop.add(settingsTabButtonControl)
+    settingsContainerTop.add(settingsTabButtonEmulation)
+
+    #settingsContainerTabGeneral
+    settingsContainerBot.add(settingsTabGeneralCheckVs)
+
+    # Button Events
 
     buttonOpenFile.onClick = proc(event: ClickEvent) =
         # Set an event handler for the "onClick" event (here as anonymous proc).
@@ -81,15 +125,37 @@ proc windowAppMain() =
             log("appFileDialogOpen - selected None", "INFO")
 
     buttonOpenSettings.onClick = proc(event: ClickEvent) = 
-        let settingWindow = newWindow(title="Settings")
+        
         settingWindow.show()
         log("appWindow:Settings.show()", "INFO")
         logTextArea.addLine("appWindow:Settings.show()")
         settingWindow.onCloseClick = proc(event: CloseClickEvent) = 
-            settingWindow.dispose()
+            settingWindow.hide()
             log("appWindow:Settings closed", "INFO")
             logTextArea.addLine("appWindow:Settings closed")
 
+    settingsTabButtonGeneral.onClick = proc(event: ClickEvent) = 
+        var e = 0
+        if settingsTabGeneralHidden:
+            settingsContainerBot.show()
+            log("appWindow:Settings:General.show()", "INFO")
+            settingsTabGeneralHidden = false
+            settingsTabControlHidden = true
+            settingsTabEmulationHidden = true
+        else:
+            settingsContainerBot.hide()
+            log("appWindow:Settings:General.hide()", "INFO")
+            settingsTabGeneralHidden = true
+    
+    settingsTabGeneralCheckVs.onClick = proc(event: ClickEvent) = 
+        var checked:bool
+
+        if settingsTabGeneralCheckVs.checked == false:
+            checked = true
+        else:
+            checked = false
+        
+        log("appWindow:Settings:General:Vsync - " & $checked, "NOTICE")
 
     window.show()
     # Make the window visible on the screen.

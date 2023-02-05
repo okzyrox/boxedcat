@@ -4,6 +4,8 @@ src/*.exe
 *.log
 logs/*.log
 
+*.ini
+
 nimcache/
 nimblecache/
 htmldocs/
