@@ -12,6 +12,8 @@ include "app/app.nim"
 import core/boxedcat/util/logger/logger
 
 when isMainModule:
+  addLogger stdout # logging init1
+  addLogger open("boxedcat.log", fmWrite) # start logging file; logging init2
   log("Starting Boxedcat...\n", "INFO")
   echo core_CoreInit()
   echo core_LoaderInit()

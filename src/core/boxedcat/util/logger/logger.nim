@@ -8,7 +8,18 @@
 
 import strutils, times
 
+type Logger = object
+    file:File
+
+var loggers = newSeq[Logger]()
+
+proc addLogger*(file:File) = 
+    loggers.add Logger(file:file)
+
 template log*(text: string, level: string) =
-  const module = instantiationInfo().filename
-  let str = "[$# $#][$#] - $#: $#" % [getDateStr(), getClockStr(), module, level, text]
-  echo str
+  let 
+    module = instantiationInfo().filename
+    str = "[$# $#][$#] - $#: $#" % [getDateStr(), getClockStr(), module, level, text]
+  for logger in loggers:
+    logger.file.writeLine str
+    logger.file.flushFile
