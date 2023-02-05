@@ -7,5 +7,9 @@
 ]#
 
 include "applet_handler_util.nim"
+import ../../../core/boxedcat/util/logger/logger # efficient i swear
 
-echo 1
+var applets = newSeq[Applet]()
+
+template appletHandler*(applet:Applet):int64 =
+  log("appletHandlerApp init", "INFO")

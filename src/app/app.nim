@@ -21,6 +21,12 @@ const
         ".nro", ".nca", ".xci", ".nsp"
     ]
 
+proc appletProcess() =
+    log("Applet Processing has not been implemented yet!", "WARN")
+
+proc startEmulationProcessWindow() =
+    log("Core Emulation has not been implemented yet!", "WARN")
+
 proc windowAppMain() =
 
     app.init() # init
@@ -33,23 +39,30 @@ proc windowAppMain() =
     window.height = 600.scaleToDpi
     #window.iconPath=APPICONPATH
 
-    var container = newLayoutContainer(Layout_Vertical)
+    var containerCore = newLayoutContainer(Layout_Vertical)
+    var containerTop = newLayoutContainer(Layout_Horizontal)
+    var containerBot = newLayoutContainer(Layout_Vertical)
     # Create a container for controls.
     # By default, a container is empty.
     # It's size will adapt to it's child controls.
     # A LayoutContainer will automatically align the child controls.
     # The layout is set to clhorizontal.
 
-    window.add(container)
+    containerCore.add(containerTop)
+    containerCore.add(containerBot)
+
+    window.add(containerCore)
     # Add the container to the window.
 
     var buttonOpenFile = newButton("Open File (.nro, .xci, .nsp, .nca)")
-    var logFieldHeaderText = newLabel("Log:")
+    var buttonOpenSettings = newButton("Settings")
+    var logFieldHeaderText = newLabel("App-specific Events Log:")
     var logTextArea = newTextArea() # multiline txtbox
 
-    container.add(buttonOpenFile)
-    container.add(logFieldHeaderText)
-    container.add(logTextArea)
+    containerTop.add(buttonOpenFile)
+    containerTop.add(buttonOpenSettings)
+    containerBot.add(logFieldHeaderText)
+    containerBot.add(logTextArea)
 
     buttonOpenFile.onClick = proc(event: ClickEvent) =
         # Set an event handler for the "onClick" event (here as anonymous proc).
@@ -66,6 +79,17 @@ proc windowAppMain() =
                 log("appFileDialogOpen - selected (path): " & file, "INFO")
         else:
             log("appFileDialogOpen - selected None", "INFO")
+
+    buttonOpenSettings.onClick = proc(event: ClickEvent) = 
+        let settingWindow = newWindow(title="Settings")
+        settingWindow.show()
+        log("appWindow:Settings.show()", "INFO")
+        logTextArea.addLine("appWindow:Settings.show()")
+        settingWindow.onCloseClick = proc(event: CloseClickEvent) = 
+            settingWindow.dispose()
+            log("appWindow:Settings closed", "INFO")
+            logTextArea.addLine("appWindow:Settings closed")
+
 
     window.show()
     # Make the window visible on the screen.

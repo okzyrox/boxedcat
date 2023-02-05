@@ -20,7 +20,7 @@ proc addLogger*(file:File) =
 DEBUG
 INFO
 NOTICE
-WARNING
+WARN
 ERROR
 FATAL
 ]#

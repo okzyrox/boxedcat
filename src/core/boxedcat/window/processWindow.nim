@@ -6,7 +6,8 @@
   emulation process window
 ]#
 
-# include qt
+# include qt # maybe
+import ../util/logger/logger
 
-
-echo "Emulation Process Window init"
+proc debEmuProcess() = 
+  log("Emulation Process Window init", "INFO")
