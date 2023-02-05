@@ -17,7 +17,7 @@ proc initModulesCore() =
     for i in coreModuleList:
         case i:
             of "BLANK":
-                echo "nothing happened..."
+                log("but nothing happened...", "NOTICE")
             
 
 

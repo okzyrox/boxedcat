@@ -16,6 +16,15 @@ var loggers = newSeq[Logger]()
 proc addLogger*(file:File) = 
     loggers.add Logger(file:file)
 
+#[error levels
+DEBUG
+INFO
+NOTICE
+WARNING
+ERROR
+FATAL
+]#
+
 template log*(text: string, level: string) =
   let 
     module = instantiationInfo().filename

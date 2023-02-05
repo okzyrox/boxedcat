@@ -57,11 +57,15 @@ proc windowAppMain() =
         fileDiaOpen.title = "Open File"
         fileDiaOpen.multiple = false
         fileDiaOpen.run()
+        log("appFileDialogOpen:run()", "INFO")
 
         logTextArea.addLine($fileDiaOpen.files.len & " file selected:")
         if fileDiaOpen.files.len > 0:
             for file in fileDiaOpen.files:
                 logTextArea.addLine("File-path : " & file)
+                log("appFileDialogOpen - selected (path): " & file, "INFO")
+        else:
+            log("appFileDialogOpen - selected None", "INFO")
 
     window.show()
     # Make the window visible on the screen.
