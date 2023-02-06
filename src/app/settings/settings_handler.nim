@@ -9,8 +9,11 @@
 import std/[parsecfg, strutils, streams]
 import ../../core/boxedcat/util/logger/logger
 
-var settingsLoadFromFile:bool
-var configDict:Config
+var 
+    settingsLoadFromFile:bool
+    configDict:Config
+
+    didLoadSettingsSuccessfully:bool
 
 
 proc checkSettings() =
@@ -24,6 +27,25 @@ proc checkSettings() =
     ]
     # do later because this is hella painful to write and not efficient 
 
+
+proc createSettings() =
+    var hasPreviousSettings:bool
+
+    try:
+        let x  = loadConfig("appSettings.ini")
+        hasPreviousSettings = true
+    except:
+        hasPreviousSettings = false
+    
+    # do something
+
+proc loadSettings():Config = 
+    var settingsR:Config
+
+    try:
+        settingsR = loadConfig("appSettings.ini")
+    except:
+        log("An error occured while loading settings, please check your \'appSettings.ini\' config file!", "WARN")
 
 try:
     let settingsFile = loadConfig("appSettings.ini") # bad but ok

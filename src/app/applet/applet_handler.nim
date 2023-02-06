@@ -7,7 +7,7 @@
 ]#
 
 include "applet_handler_util.nim"
-import ../../../core/boxedcat/util/logger/logger # efficient i swear
+import ../../core/boxedcat/util/logger/logger # efficient i swear
 
 var applets = newSeq[Applet]()
 

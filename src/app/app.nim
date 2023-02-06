@@ -11,11 +11,11 @@ include nigui/msgbox
 import strutils
 import ../core/boxedcat/util/logger/logger
 include settings/settings_handler
-
+import app_util
 
 let 
-    isNotCliApp:bool = true # "dont run in CLI?"
-    noClosePopupApp:bool = false # "confirm whether to close each time?"
+    isNotCliApp:bool = true # "dont run in CLI?", not impl yet technically
+    noClosePopupApp:bool = false # confirm whether to close each time
 
 const
     APPICONPATH = "icon_64x64.png"
@@ -71,6 +71,7 @@ proc windowAppMain() =
         ##containerTop
         buttonOpenFile = newButton("Open File (.nro, .xci, .nsp, .nca)")
         buttonOpenSettings = newButton("Settings")
+        buttonDevRunTestApplet = newButton("Applet")
         ##containerBot
         logFieldHeaderText = newLabel("App-specific Events Log:")
         logTextArea = newTextArea() # multiline txtbox
@@ -99,6 +100,7 @@ proc windowAppMain() =
     #ContainerCore
     containerTop.add(buttonOpenFile)
     containerTop.add(buttonOpenSettings)
+    containerTop.add(buttonDevRunTestApplet)
     containerBot.add(logFieldHeaderText)
     containerBot.add(logTextArea)
 
@@ -172,6 +174,12 @@ proc windowAppMain() =
             checked = false
         
         log("appWindow:Settings:General:ExpandMemoryBuffer - " & $checked, "NOTICE")
+
+    buttonDevRunTestApplet.onClick = proc(event: ClickEvent) =
+         
+        AppletEvent("softwareKeyboardApplet")
+        log("Software-Applet Initiated - Keyboard Input", "DEBUG")
+
 
     window.show()
     # Make the window visible on the screen.
