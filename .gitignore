@@ -1,6 +1,9 @@
 *.exe
 src/*.exe
 
+build/
+build/*.exe
+
 *.log
 logs/*.log
 
