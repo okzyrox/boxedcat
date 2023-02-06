@@ -12,20 +12,36 @@ import ../../core/boxedcat/util/logger/logger
 var settingsLoadFromFile:bool
 var configDict:Config
 
+
+proc checkSettings() =
+    var settingsList = @[
+        [
+            "General", "VSync"
+        ],
+        [
+            "General", "Expand Memory Buffer"
+        ]
+    ]
+    # do later because this is hella painful to write and not efficient 
+
+
 try:
     let settingsFile = loadConfig("appSettings.ini") # bad but ok
-    settingsLoadFromFile = true
-except:
-    settingsLoadFromFile = false
 
-if settingsLoadFromFile == false:
+    try:
+        checkSettings()
+    except:
+        log("An error occurred while checking settings", "WARN")
+
+    configDict = loadConfig("appSettings.Ini")
+except:
     configDict = newConfig()
     #settings
     configDict.setSectionKey("General", "VSync", "false")
     #endsettings
     configDict.writeConfig("appSettings.ini")
-else:
-    configDict = loadConfig("appSettings.ini")
+
+
 
 proc getConfig*():Config =
     return configDict

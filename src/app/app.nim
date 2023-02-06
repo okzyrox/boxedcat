@@ -81,10 +81,15 @@ proc windowAppMain() =
         settingsTabButtonControl = newButton("Control")
         settingsTabButtonEmulation = newButton("Emulation")
         #containerBottomTabGeneral
-        settingsTabGeneralCheckVs = newCheckbox("VSync")
+        setting_General_VSync = newCheckbox("VSync")
+        setting_General_ExpMemBuf = newCheckbox("Expand Memory Buffer (8GB+ recommended)")
+
+        #settings get
         setVsyncC = configDict.getSectionValue("General", "VSync")
+        setExpMemBuf = configDict.getSectionValue("General", "ExpandMemoryBuffer")
     
-    if setVsyncC == "true": settingsTabGeneralCheckVs.checked = true
+    if setVsyncC == "true": setting_General_VSync.checked = true
+    if setExpMemBuf == "true": setting_General_ExpMemBuf.checked = true
 
     var 
         settingsTabGeneralHidden = false
@@ -104,7 +109,8 @@ proc windowAppMain() =
     settingsContainerTop.add(settingsTabButtonEmulation)
 
     #settingsContainerTabGeneral
-    settingsContainerBot.add(settingsTabGeneralCheckVs)
+    settingsContainerBot.add(setting_General_VSync)
+    settingsContainerBot.add(setting_General_ExpMemBuf)
 
     # Button Events
 
@@ -147,15 +153,25 @@ proc windowAppMain() =
             log("appWindow:Settings:General.hide()", "INFO")
             settingsTabGeneralHidden = true
     
-    settingsTabGeneralCheckVs.onClick = proc(event: ClickEvent) = 
+    setting_General_VSync.onClick = proc(event: ClickEvent) = 
         var checked:bool
 
-        if settingsTabGeneralCheckVs.checked == false:
+        if setting_General_VSync.checked == false:
             checked = true
         else:
             checked = false
         
         log("appWindow:Settings:General:Vsync - " & $checked, "NOTICE")
+    
+    setting_General_ExpMemBuf.onClick = proc(event: ClickEvent) = 
+        var checked:bool
+
+        if setting_General_ExpMemBuf.checked == false:
+            checked = true
+        else:
+            checked = false
+        
+        log("appWindow:Settings:General:ExpandMemoryBuffer - " & $checked, "NOTICE")
 
     window.show()
     # Make the window visible on the screen.
