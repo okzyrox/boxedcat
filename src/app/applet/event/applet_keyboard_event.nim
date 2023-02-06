@@ -1,3 +1,11 @@
+#[
+  boxedcat - an okzyrox experimental project
+
+  2022-2023
+
+  applet - softwareKeyboard
+]#
+
 include nigui
 include nigui/msgbox
 

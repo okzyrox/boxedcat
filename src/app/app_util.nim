@@ -1,3 +1,11 @@
+#[
+  boxedcat - an okzyrox experimental project
+
+  2022-2023
+
+  app utils
+]#
+
 include applet/event/applet_keyboard_event
 
 proc AppletEvent*(appletTypeStr:string) =
