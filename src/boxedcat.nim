@@ -10,6 +10,7 @@ include "core/core_ini.nim"
 include "core/loader_ini.nim"
 include "app/app.nim"
 import core/boxedcat/util/logger/logger
+import app/settings/settings_handler
 
 when isMainModule:
   addLogger stdout # logging init1
@@ -17,6 +18,7 @@ when isMainModule:
   log("Starting Boxedcat...\n", "INFO")
   echo core_CoreInit()
   echo core_LoaderInit()
+  checkSettings()
   if isNotCliApp:
     log("Attempting \'appWindow\' init", "INFO")
     windowAppMain() # window
